@@ -1,0 +1,52 @@
+{% extends "maintenance/base.html" %}
+{% block title %}Website List{% endblock %}
+
+{% block content %}
+<link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+<div class="px-5 pb-5">
+  <header class="mt-2">
+    <div class="mb-5">
+      <h1 class="is-size-3 has-text-weight-medium">Website List</h1>
+    </div>
+  </header>
+  <div id="wrapper"></div>
+</div>
+<script type="module">
+  import { Grid, h }from 'https://cdn.jsdelivr.net/npm/gridjs@6.0.6/+esm'
+
+  new Grid({
+  columns: [
+    "Name",
+    { 
+      name: "URL",
+      hidden: false
+    },
+    "Plan",
+    "Grade",
+    "DSM",
+    { 
+      name: "Details",
+      hidden: true
+    },
+    { 
+        name: 'Actions',
+        formatter: (cell, row) => {
+          return h('button', {
+            className: 'button is-warning',
+            onClick: () => location.href = row.cells[5]['data']
+          }, 'DETAILS');
+        }
+      }
+  ],
+  data: [
+    {% for website in website_list %}
+    { name: '{{website.name}}', url: '{{website.url}}', plan: '{{website.maintenance_plan.name}}', grade: '{{website.maintenance_grade.name}}', dsm: {{website.days_since_maintenance}}, details: '/maintenance/website/{{ website.id }}/' },
+    {% endfor %}
+  ],
+  sort: true,
+  search: true,
+  pagination: true
+}).render(document.getElementById("wrapper"));
+</script>
+{% endblock %}
+

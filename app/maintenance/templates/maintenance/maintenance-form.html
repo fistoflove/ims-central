@@ -1,0 +1,80 @@
+{% extends "maintenance/base-clean.html" %}
+{% block title %}{{ website.name }}{% endblock %}
+{% block page_title %}{{ website.name }}{% endblock %}
+
+{% block content %}
+<section class="hero is-info">
+  <div class="container">
+    <div class="px-5 py-6">
+      <p class="title">
+        {{website.name}}
+      </p>
+      <div class="subtitle">
+        <p class="my-2">Maintenance Form</p>
+        <div class="mb-2">
+          <span class="is-size-6"><strong>Plan:</strong> {{website.maintenance_plan}}</span>
+        </div>
+        <div>
+          <span class="is-size-6"><strong>Grade:</strong> {{website.maintenance_grade}}</span> | <span class="is-size-6"><strong>Days Since Maintenance:</strong> {{website.days_since_maintenance}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="inner px-5 my-3">
+    <form id="task-form">
+      {% for task in tasks %}
+      <div class="task-box mb-2">
+        <div class="task-head is-flex is-justify-content-space-between is-align-items-center">
+          <div>
+            <input type="checkbox" id="{{task.slug}}" name="{{task.slug}}" style="height:15px;width:15px;">
+            <label for="{{task.slug}}" class="is-size-5 has-text-weight-medium has-text-info-dark">{{task.name}}</label>
+          </div>
+          <div class="button is-small" data-tooltip='Add Note' onclick="toggleNote(this);">
+            <span class="icon is-small">
+              <i class="fa-solid fa-notes-medical"></i>
+            </span>
+          </div>
+        </div>
+        <div class="task-note">
+          <textarea id="{{task.slug}}-note" name="{{task.slug}}-note" class="textarea is-medium mt-3" rows="2" cols="50"></textarea>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="task-box mb-2 my-3 is-flex is-align-items-center is-justify-content-space-between">
+        <div><label for="recommended-grade" class="is-size-5 has-text-weight-medium has-text-info-dark">Maintenance Grade: </label></div>
+        <div class="select">
+          <select name="recommended-grade">
+            {% for grade in grades %}
+            <option value="{{grade.name}}" {% if grade.name == website.maintenance_grade.name %}selected{% endif %}>{% if grade.name == website.maintenance_grade.name %}{{grade.name}} (no change){% else %}{{grade.name}} (change){% endif %}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="task-box mb-2">
+        <label for="optimization-tasks" class="is-size-5 has-text-weight-medium has-text-info-dark">Optimisation Tasks:</label>
+        <textarea id="optimization-tasks" name="optimization-tasks" class="textarea is-medium my-3" rows="2" cols="50"></textarea>
+      </div>
+    </form>
+    <div class="pb-5">
+      <button onclick="taskForm()" class="button is-success">Submit Maintenance Record</button>
+    </div>
+    <form action="/maintenance/website/{{website.id}}/maintenance" method="post" id="maintenance-form">{% csrf_token %}{{ form.media }}{{ form }}</form>
+    </div>
+</div>
+<script>
+  function taskForm() {
+    let object = {};
+    let data = new FormData(document.querySelector('#task-form'));
+    data.forEach((value, key) => object[key] = value);
+
+    document.querySelector('#id_task_data').value = JSON.stringify(object);
+    document.querySelector('#maintenance-form').submit();
+  }
+  function toggleNote(e) {
+    e.style.display = "none";
+    e.parentNode.parentNode.classList.add('note');
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "maintenance/base.html" %}
+{% block title %}{{ website.name }}{% endblock %}
+{% block page_title %}{{ website.name }}{% endblock %}
+
+{% block content %}
+<div class="px-5">
+  <h1 class="is-size-1"><strong>{{website.name}}</strong></h1>
+  <div class="is-flex is-align-items-center is-justify-content-space-between">
+    <div class="is-flex">
+      <div class="is-flex is-align-items-center mr-3">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mr-2" style="width: 1.25rem;height: 1.25rem;">
+          <path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 018.75 1h2.5A2.75 2.75 0 0114 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 016 4.193V3.75zm6.5 0v.325a41.622 41.622 0 00-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25zM10 10a1 1 0 00-1 1v.01a1 1 0 001 1h.01a1 1 0 001-1V11a1 1 0 00-1-1H10z" clip-rule="evenodd" />
+          <path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 01-9.274 0C3.985 17.585 3 16.402 3 15.055z" />
+        </svg>
+        <a href="{{website.url}}" target="_blank">{{website.url}}</a>
+      </div>
+      <div class="is-flex is-align-items-center mr-3">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mr-2" style="width: 1.25rem;height: 1.25rem;">
+          <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+        </svg>
+        {{website.maintenance_plan}}
+      </div>
+      <div class="is-flex is-align-items-center mr-3">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mr-2" style="width: 1.25rem;height: 1.25rem;">
+          <path d="M10.75 10.818v2.614A3.13 3.13 0 0011.888 13c.482-.315.612-.648.612-.875 0-.227-.13-.56-.612-.875a3.13 3.13 0 00-1.138-.432zM8.33 8.62c.053.055.115.11.184.164.208.16.46.284.736.363V6.603a2.45 2.45 0 00-.35.13c-.14.065-.27.143-.386.233-.377.292-.514.627-.514.909 0 .184.058.39.202.592.037.051.08.102.128.152z" />
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-6a.75.75 0 01.75.75v.316a3.78 3.78 0 011.653.713c.426.33.744.74.925 1.2a.75.75 0 01-1.395.55 1.35 1.35 0 00-.447-.563 2.187 2.187 0 00-.736-.363V9.3c.698.093 1.383.32 1.959.696.787.514 1.29 1.27 1.29 2.13 0 .86-.504 1.616-1.29 2.13-.576.377-1.261.603-1.96.696v.299a.75.75 0 11-1.5 0v-.3c-.697-.092-1.382-.318-1.958-.695-.482-.315-.857-.717-1.078-1.188a.75.75 0 111.359-.636c.08.173.245.376.54.569.313.205.706.353 1.138.432v-2.748a3.782 3.782 0 01-1.653-.713C6.9 9.433 6.5 8.681 6.5 7.875c0-.805.4-1.558 1.097-2.096a3.78 3.78 0 011.653-.713V4.75A.75.75 0 0110 4z" clip-rule="evenodd" />
+        </svg>
+        {{website.maintenance_grade}}
+      </div>
+      <div class="is-flex is-align-items-center mr-3">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="mr-2" style="width: 1.25rem;height: 1.25rem;">
+          <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+        </svg>
+        Days Since Maintenance: {{website.days_since_maintenance}} 
+      </div>
+    </div>
+    <div class="is-flex">
+      <a class="ml-3" href="/admin/maintenance/website/{{website.id}}/change/" target="_blank">
+        <button type="button" class="button is-link">
+          <span class="icon">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </span>
+          <span class="has-text-weight-medium">Edit</span>
+        </button>
+      </a>
+      {% if website.login_url|length > 0 %}
+      <a class="ml-3" href="{{website.login_url}}" target="_blank">
+        <button type="button" class="button is-info">
+          <span class="icon">
+            <i class="fa-brands fa-wordpress-simple"></i>
+          </span>
+          <span class="has-text-weight-medium">Login</span>
+        </button>
+      </a>
+      {% endif %}
+      {% if website.testing_url|length > 0 %}
+      <a class="ml-3" href="{{website.testing_url}}" target="_blank">
+        <button type="button" class="button is-warning">
+          <span class="icon">
+            <i class="fa-solid fa-vials"></i>
+          </span>
+          <span class="has-text-weight-medium">Test Functionality</span>
+        </button>
+      </a>
+      {% endif %}
+      {% if website.maintenance_task_list.name|length > 0 %}
+      <a class="ml-3" onclick='window.open("/maintenance/website/{{website.id}}/maintenance", "", "width=500,height=1020");'>
+        <button type="button" class="button is-success">
+          <span class="icon">
+            <i class="fa-solid fa-toolbox"></i>
+          </span>
+          <span class="has-text-weight-medium">Perform Maintenance</span>
+        </button>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="px-5 mt-7">
+  <div class="tabs is-toggle is-fullwidth">
+    <ul>
+      <li class="tab-head is-active" data-tab="1" onclick="toggleTab(this);">
+        <a>
+          <span class="icon is-small"><i class="fa-solid fa-circle-info"></i></span>
+          <span>Information</span>
+        </a>
+      </li>
+      <li class="tab-head" data-tab="2" onclick="toggleTab(this);">
+        <a>
+          <span class="icon is-small"><i class="fa-regular fa-rectangle-list"></i></span>
+          <span>Events</span>
+        </a>
+      </li>
+      <li class="tab-head" data-tab="3" onclick="toggleTab(this);">
+        <a>
+          <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+          <span>Reports</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="px-5 my-5">
+  <div class="box tab-content is-active" tab-content="1">
+    <div class="block">
+      <h3 class="is-size-5"><strong>Website Description</strong></h3>
+      {% if website.description|length > 0 %}
+      <p>{{website.description}}</p>
+      {% else %}
+      <p>No description.</p>
+      {% endif %}
+    </div>
+    <div class="block">
+      <h3 class="is-size-5"><strong>Website Notes</strong></h3>
+      {% if website.notes|length > 0 %}
+      <p>{{website.notes}}</p>
+      {% else %}
+      <p>No notes.</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="box tab-content" tab-content="2">
+    <h3 class="is-size-5 block"><strong>Website Events</strong></h3>
+    <ul>
+      {% if website_events|length < 1 %}
+      <li class="block"><span class="is-size-4">No Events</span></li>
+      {% else %}
+      {% for event in website_events %}
+      <li class="my-2">
+        <a href="#" class="block button is-white">
+          <div class="has-text-left">
+            <strong>Event Date:</strong> {{event.created_at}} | <strong>Event Name:</strong> <span class="is-capitalized">{{event.name}}</span> | <strong>Developer:</strong> {{event.worker}}
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+  <div class="box tab-content" tab-content="3">
+    <h3 class="is-size-5 block"><strong>Reports</strong></h3>
+    <span>Coming soon.</span>
+  </div>
+</div>
+<style>
+  .tab-content:not(.is-active) { display:none; }
+</style>
+<script>
+  function toggleTab(e) {
+    [...document.querySelectorAll('.tab-head.is-active')].forEach(function(el) { el.classList.remove('is-active'); });
+
+    e.classList.toggle('is-active');
+    [...document.querySelectorAll('.tab-content.is-active')].forEach(function(el) { el.classList.remove('is-active'); });
+    document.querySelector('[tab-content="' + e.dataset.tab + '"]').classList.toggle('is-active');
+  }
+</script>
+{% endblock %}

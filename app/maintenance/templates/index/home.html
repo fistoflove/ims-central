@@ -1,0 +1,70 @@
+{% extends "index/base.html" %}
+
+{% block content %}
+<div class="theme-bg-1 pb-5" style="min-height:100vh;">
+  <div class="container">
+    <div class="logo-wrapper py-5 mb-5">
+      <img class="" src="https://aldhuybmnp.cloudimg.io/v7/www.imsmarketing.ie/wp-content/uploads/2021/11/ims-marketing-logo-2020.png" alt="IMS Marketing">
+    </div>
+    <div class="user-wrapper py-5">
+      <h1 class="is-size-1 has-text-weight-bold has-text-white">Welcome, <span class="yellow-text">{{request.user}}</span>.</h1>
+    </div>
+    <div class="container has-background-white p-5 box">
+      <div class="columns">
+        <div class="column auto">
+          <div class="block">
+            <h2 class="is-size-4 title">Modules</h2>
+          </div>
+          <div class="block">
+            <div class="tile is-ancestor">
+              <div class="tile is-vertical is-4 is-full-mobile">
+                <div class="tile">
+                  <div class="tile is-parent is-vertical">
+                    <a class="tile is-child notification is-danger" href="/maintenance">
+                      <p class="title is-5">Maintenance Central</p>
+                      <p class="subtitle is-6">IMS maintenance clients</p>
+                    </a>
+                  </div>
+                </div>
+                <div class="tile is-parent">
+                  <a class="tile is-child notification is-warning" href="http://resources.imsmarketing.ie/" target="_blank">
+                    <p class="title is-5">Resources Library</p>
+                    <p class="subtitle is-6">IMS knowledge base</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="block">
+            <div class="block">
+              <h2 class="is-size-4 title">User Actions</h2>
+            </div>
+            <div class="block">
+              <aside class="menu">
+                <ul class="menu-list">
+                  <li><a>Profile</a></li>
+                  <li><a>Logout</a></li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+          <div class="block">
+            <div class="block">
+              <h2 class="is-size-4 title">Updates</h2>
+            </div>
+            <div class="block">
+              <div class="notification is-success is-light"><strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Et dictum <a>felis venenatis</a> efficitur.</div>
+            </div>
+            <div class="block">
+              <div class="notification is-danger is-light">Tempus quis placerat ut, porta nec nulla.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

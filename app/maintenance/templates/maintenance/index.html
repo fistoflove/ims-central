@@ -1,0 +1,60 @@
+{% extends "maintenance/base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="px-5">
+  <header class="mt-2">
+    <div class="mb-5">
+      <h1 class="is-size-3 has-text-weight-medium">Home</h1>
+    </div>
+  </header>
+  <div>
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="stat-box p-5">
+          <div class="has-text-weight-medium is-size-4">Total Websites</div>
+          <div class="has-text-weight-bold is-size-1">{{total_websites}}</div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="stat-box p-5">
+          <div class="has-text-weight-medium is-size-4">Maintenance Websites</div>
+          <div class="has-text-weight-bold is-size-1">{{total_websites}}</div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="stat-box p-5">
+          <div class="has-text-weight-medium is-size-4">Maintenance Coverage</div>
+          <div class="has-text-weight-bold is-size-1">100%</div>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <div class="stat-box p-4">
+          <div class="has-text-weight-medium is-size-5">Grade A Websites</div>
+          <div class="has-text-weight-bold is-size-2">{{a_websites}}</div>
+        </div>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="stat-box p-4">
+          <div class="has-text-weight-medium is-size-5">Grade B Websites</div>
+          <div class="has-text-weight-bold is-size-2">{{b_websites}}</div>
+        </div>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="stat-box p-4">
+          <div class="has-text-weight-medium is-size-5">Grade C Websites</div>
+          <div class="has-text-weight-bold is-size-2">{{c_websites}}</div>
+        </div>
+      </div>
+      <div class="column is-one-quarter">
+        <div class="stat-box p-4">
+          <div class="has-text-weight-medium is-size-5">Grade D Websites</div>
+          <div class="has-text-weight-bold is-size-2">{{d_websites}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

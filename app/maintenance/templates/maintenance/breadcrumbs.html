@@ -1,0 +1,16 @@
+<div class="p-5">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      {% for breadcrumb in breadcrumbs %}
+      <li {% if forloop.last %}class="is-active"{% endif %}>
+        <a href="{{breadcrumb.link}}">
+          <span class="icon is-small">
+            <i class="{{breadcrumb.icon}}" aria-hidden="true"></i>
+          </span>
+          <span>{{breadcrumb.title}}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
