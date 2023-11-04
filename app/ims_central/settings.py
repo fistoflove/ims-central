@@ -9,9 +9,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os, secrets
+import dj_database_url
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,14 +21,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sa0yn*@q9f$0dei@e$2y1(8-_q=(7%#q8n*^i=-1pjvw9190qy'
+# SECRET_KEY = 'django-insecure-sa0yn*@q9f$0dei@e$2y1(8-_q=(7%#q8n*^i=-1pjvw9190qy'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    default=secrets.token_urlsafe(nbytes=64),
+)
 
-ALLOWED_HOSTS = ["*"]
+IS_HEROKU_APP = "DYNO" in os.environ and not "CI" in os.environ
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-fistoflove-imscentral-518pse2m7fl.ws-eu105.gitpod.io']
+if not IS_HEROKU_APP:
+    DEBUG = True
+
+if IS_HEROKU_APP:
+    ALLOWED_HOSTS = ["central.imsmarketing.ie"]
+    CSRF_TRUSTED_ORIGINS = ["central.imsmarketing.ie"]
+else:
+    ALLOWED_HOSTS = ["*"]
+    CSRF_TRUSTED_ORIGINS = ['https://8000-fistoflove-imscentral-518pse2m7fl.ws-eu105.gitpod.io']
+
 
 # Application definition
 
@@ -44,8 +55,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'stronghold',
-    'ckeditor'
+    'stronghold'
 ]
 
 MIDDLEWARE = [
@@ -92,6 +102,21 @@ DATABASES = {
     }
 }
 
+if IS_HEROKU_APP:
+    DATABASES = {
+        "default": dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True,
+        ),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
