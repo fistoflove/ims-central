@@ -101,7 +101,7 @@ class WebsiteEvent(models.Model):
     data = models.JSONField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.website.name + " | " + self.name.capitalize() + " | " + self.created_at.strftime("%m/%d/%Y, %H:%M:%S")
 
     class Meta:
         verbose_name_plural = "Website Events"
