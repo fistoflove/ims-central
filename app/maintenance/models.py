@@ -1,6 +1,7 @@
 from datetime import date, datetime, timezone
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from django.utils.deconstruct import deconstructible
 from slugify import slugify
 
@@ -80,6 +81,7 @@ class Website(models.Model):
     maintenance_task_list = models.ForeignKey(MaintenanceTaskList, on_delete=models.CASCADE, blank=True, null=True)
     
     tags = models.ManyToManyField('Tag')
+
     def __str__(self):
         return self.name
     
@@ -94,9 +96,10 @@ class Website(models.Model):
 class WebsiteEvent(models.Model):
     name = models.CharField(max_length=200, default='Event Name')
     website = models.ForeignKey(Website, on_delete=models.CASCADE, blank=True, null=True)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
     worker = models.CharField(max_length=200, default='Worker Name')
     data = models.JSONField(blank=True, null=True)
+
     def __str__(self):
         return self.name
 

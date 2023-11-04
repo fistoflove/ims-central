@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+import json
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import Website, MaintenanceTaskList, MaintenanceTask, WebsiteEvent, MaintenanceGrade
 from .forms import MaintenanceForm
@@ -30,6 +31,7 @@ def index(request):
         "d_websites": d_websites.count(),
         "breadcrumbs": breadcrumbs
     }
+
     return HttpResponse(template.render(context, request))
 
 def websites_view(request):
@@ -66,7 +68,6 @@ def websites_view(request):
         "breadcrumbs": breadcrumbs
     }
 
-
     return HttpResponse(template.render(context, request))
 
 def detail(request, website_id):
@@ -97,6 +98,7 @@ def detail(request, website_id):
         "website_events": events.order_by('-created_at').values(),
         "breadcrumbs": breadcrumbs
     }
+
     return HttpResponse(template.render(context, request))
 
 def maintenance(request, website_id):
@@ -128,13 +130,13 @@ def maintenance(request, website_id):
             "tasks": tasks,
             "grades": grades
         }
+
     return HttpResponse(template.render(context, request))
 
 def test(request):
     websites = Website.objects.filter(maintenance_grade=4)
 
     context = {}
+    
+    return HttpResponse()
 
-    template = loader.get_template("maintenance/test.html")
-
-    return HttpResponse(template.render(context, request))

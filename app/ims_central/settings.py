@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-fistoflove-imscentral-ubexnqzs2wv.ws-eu102.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-fistoflove-imscentral-518pse2m7fl.ws-eu105.gitpod.io']
 
 # Application definition
 
